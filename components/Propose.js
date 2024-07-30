@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function Propose() {
   const [buttonState, setButtonState] = useState(null);
@@ -33,24 +34,54 @@ export default function Propose() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div
+      className={`flex flex-col items-center justify-center min-h-screen bg-gray-100 w-full ${
+        buttonState === "yes"
+          ? "bg-[url('/assets/images/heart.jpg')]"
+          : "bg-gray-100"
+      }`}
+    >
       <div className="bg-white p-6 rounded-lg shadow-lg text-center min-w-96">
-        <h1 className="text-2xl font-bold mb-2">Do you like me?</h1>
+        <h1 className="text-2xl font-bold mb-2 flex items-center justify-center gap-1">
+          Do you like me
+          <Image
+            src="/assets/images/heart.jpg"
+            alt="Heart"
+            width={28}
+            height={28}
+          />
+          ?
+        </h1>
         <p className="mb-6 text-lg select-none">{getMessage()}</p>
+
         <div className="w-full flex items-center justify-center gap-4">
-          <button
-            onClick={() => handleClick("yes")}
-            className="transition ease-in px-6 py-2 rounded-full border border-green-500 hover:bg-green-500 hover:text-white bg-white text-green-500 w-24 active:scale-95"
-          >
-            Yes
-          </button>
-          <button
-            onClick={() => handleClick("no")}
-            style={{ transform: `scale(${scale})` }}
-            className="transition ease-in-out px-6 py-2 rounded-full border border-red-500 text-red-500 hover:bg-red-500 hover:text-white w-24 active:scale-95"
-          >
-            No
-          </button>
+          {buttonState !== "yes" ? (
+            <>
+              <button
+                onClick={() => handleClick("yes")}
+                className="transition ease-in px-6 py-2 rounded-full border border-green-500 hover:bg-green-500 hover:text-white bg-white text-green-500 w-24 active:scale-95"
+              >
+                Yes
+              </button>
+
+              <button
+                onClick={() => handleClick("no")}
+                style={{ transform: `scale(${scale})` }}
+                className="transition ease-in-out px-6 py-2 rounded-full border border-red-500 text-red-500 hover:bg-red-500 hover:text-white w-24 active:scale-95"
+              >
+                No
+              </button>
+            </>
+          ) : (
+            <>
+              <Image
+                src="/assets/images/heart.jpg"
+                alt="Heart"
+                width={50}
+                height={50}
+              />
+            </>
+          )}
         </div>
       </div>
     </div>
