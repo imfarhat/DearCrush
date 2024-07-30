@@ -24,10 +24,10 @@ export default function Propose() {
     }
 
     const messages = [
-      "Oh come on, give it a thought!",
-      "I promise I’m fun to hang out with!",
-      "Are you sure? Give it another chance!",
-      "Please, just one more try?",
+      "Oh, please think it over! 🌸",
+      "I promise I’m delightful to hang out with! 😊",
+      "Are you sure? Give it one more thought! 🌟",
+      "Please, just one more chance? 💖",
     ];
 
     return messages[clickCount % messages.length];
